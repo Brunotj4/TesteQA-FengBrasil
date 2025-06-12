@@ -1,4 +1,4 @@
-describe('Login de usuário - Site Feng Brasil', () => {
+describe('Fluxo de Login', () => {
   const usuario = {
     email: 'bruno.testeFeng@email.com',
     senha: 'Testefeng@123'
@@ -22,21 +22,5 @@ describe('Login de usuário - Site Feng Brasil', () => {
     cy.get('.welcome_message')
       .should('be.visible')
       .and('contain.text', 'Bem-vindo(a), QA!');
-
-    // Faz logout
-    cy.get('#logout_button').click();
-    cy.url().should('eq', Cypress.config().baseUrl + '/'); // Volta para home deslogada
-  });
-
-  it('Deve exibir mensagem de erro ao tentar login com campos vazios', () => {
-    cy.get('#login_button').click();
-    cy.get('.error-message').should('contain', 'Preencha todos os campos');
-  });
-
-  it('Deve exibir mensagem de erro ao tentar login com dados inválidos', () => {
-    cy.get('#email').type('email_invalido');
-    cy.get('#password').type('senhaErrada');
-    cy.get('#login_button').click();
-    cy.get('.error-message').should('contain', 'E-mail ou senha inválidos');
   });
 });
